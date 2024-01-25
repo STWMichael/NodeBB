@@ -37,7 +37,7 @@ const Write = {
             const handleAsync = () => __awaiter(void 0, void 0, void 0, function* () {
                 if (apiSettings.requireHttps === 'on' && req.protocol !== 'https') {
                     res.set('Upgrade', 'TLS/1.0, HTTP/1.1');
-                    yield helpers_1.default.formatApiResponse(426, res); // Asynchronous call with await
+                    yield helpers_1.default.formatApiResponse(426, res);
                     return;
                 }
                 res.locals.isAPI = true;
@@ -48,7 +48,6 @@ const Write = {
         });
         router.use('/api/v3/users', (0, users_1.default)());
         router.use('/api/v3/groups', (0, groups_1.default)());
-        // ... other routes
         router.get('/api/v3/ping', write_1.default.utilities.ping.get);
         const pluginRouter = (0, express_1.Router)();
         yield plugins_1.default.hooks.fire('static:api.routes', {
@@ -68,12 +67,10 @@ const Write = {
         if (req.session) {
             req.session.destroy((err) => {
                 if (err) {
-                    // Handle error
                     console.error(err);
                     next(err);
                 }
                 else {
-                    // Proceed
                     next();
                 }
             });

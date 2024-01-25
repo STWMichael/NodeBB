@@ -35,7 +35,7 @@ const Write = {
             const handleAsync = async () => {
                 if (apiSettings.requireHttps === 'on' && req.protocol !== 'https') {
                     res.set('Upgrade', 'TLS/1.0, HTTP/1.1');
-                    await helpers.formatApiResponse(426, res); 
+                    await helpers.formatApiResponse(426, res);
                     return;
                 }
                 res.locals.isAPI = true;
