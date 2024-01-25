@@ -15,7 +15,6 @@ interface WriteParams {
 
 interface ApiSettings {
   requireHttps: 'on' | 'off';
-  // other settings as needed
 }
 
 const Write = {
@@ -49,8 +48,6 @@ const Write = {
 
         router.use('/api/v3/users', usersRoute());
         router.use('/api/v3/groups', groupsRoute());
-        // ... other routes
-
         router.get('/api/v3/ping', writeControllers.utilities.ping.get);
 
         const pluginRouter = Router();
@@ -74,11 +71,9 @@ const Write = {
         if (req.session) {
             req.session.destroy((err) => {
                 if (err) {
-                    // Handle error
                     console.error(err);
                     next(err);
                 } else {
-                    // Proceed
                     next();
                 }
             });
